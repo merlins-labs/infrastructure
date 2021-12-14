@@ -57,7 +57,7 @@ terraform plan \
   - Defines the provider and provider's configuration
 - osmo-node.tf
   - Defines a node that will be created in DigitalOcean
-- setup.sh
+- setup.sh (WIP, does not do anything yet)
   - Utility to help you run Terraform with different parameters
 - scripts/start-node.sh
   - Bash script to setup a testnet node
