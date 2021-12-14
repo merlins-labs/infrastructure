@@ -44,13 +44,3 @@ resource "digitalocean_droplet" "osmo-node" {
       ]
     }
 
-#Check version and config
-  provisioner "remote-exec" {
-    inline = [
-      "osmosisd version",
-      "osmosisd config",
-    ]
-  }
-}
-
-
