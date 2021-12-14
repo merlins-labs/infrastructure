@@ -1,6 +1,9 @@
-#Osmosis IAC
-This is an experimental attempt to setup the infrastructure as code for running different osmosis setups via Terraform. Terraform is quite flexible, I'm sure this can be improved a lot. The idea is to be able to recycle nodes fast and to make sure that we are always using the exact same configuration. 
+#Osmosis IAC WIP
+
+This is an experimental attempt to setup the infrastructure as code for running different osmosis setups via Terraform's IAC (Infrastructure as code). Terraform is quite flexible, I'm sure this can be improved a lot. The idea is to be able to recycle nodes fast and to make sure that we are always using the exact same configuration. 
 At first we will use DigitalOcean but we could make modules for different cloud providers and different types of configurations. 
+
+This setup works with Terraform's CLI and is executed locally. We will eventually move to Terraform Cloud. 
 
 ### Install Terraform
 Install Terraform via the commands below or get more options from the [official docs](https://learn.hashicorp.com/tutorials/terraform/install-cli).
