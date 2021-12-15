@@ -43,4 +43,6 @@ resource "digitalocean_droplet" "osmo-node" {
         "/tmp/setup-genesis-state.sh",
       ]
     }
+}
+
 
