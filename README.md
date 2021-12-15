@@ -1,4 +1,4 @@
-# Osmosis IAC WIP
+#Osmosis IAC WIP
 
 This is an experimental attempt to setup the infrastructure as code for running different osmosis setups via Terraform's IAC (Infrastructure as code). Terraform is quite flexible, I'm sure this can be improved a lot. The idea is to be able to recycle nodes fast and to make sure that we are always using the exact same configuration. 
 At first we will use DigitalOcean but we could make modules for different cloud providers and different types of configurations. 
@@ -38,6 +38,7 @@ Give it the name "terraform".
 terraform plan \
   -var "do_token=${DO_PAT}" \
   -var "pvt_key=$HOME/.ssh/id_rsa"
+
 ```
 
 ### Execute the current plan 
@@ -56,9 +57,9 @@ terraform plan \
   - Defines the provider and provider's configuration
 - osmosis-node.tf
   - Defines a node that will be created in DigitalOcean
-- setup.sh
-  - WIP Utility to help you setup Terraform with different parameters
-- scripts/single-validator-testnet.sh
+- setup.sh (WIP, does not do anything yet)
+  - Utility to help you run Terraform with different parameters
+- scripts/start-node.sh
   - Bash script to setup a testnet node
 - scripts/setup-genesis-state.sh
   - Example Bash script to a genesis state
