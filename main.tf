@@ -7,13 +7,10 @@ terraform {
   }
 }
 
-variable "do_token" {}
-variable "pvt_key" {}
-
 provider "digitalocean" {
   token = var.do_token
 }
 # This is added at https://cloud.digitalocean.com/account/security
 data "digitalocean_ssh_key" "terraform" {
-  name = "Macbook Pro Dan"
+  name = "terraform"
 }

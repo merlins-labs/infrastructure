@@ -1,9 +1,9 @@
 #Type of node to create
 resource "digitalocean_droplet" "osmo-node" {
   image = "ubuntu-20-04-x64"
-  name = "osmo-node"
-  region = "nyc3"
-  size = "m6-4vcpu-32gb"
+  name = var.instance_name
+  region = var.instance_region
+  size = var.instance_type
   ssh_keys = [
     data.digitalocean_ssh_key.terraform.id
   ]
