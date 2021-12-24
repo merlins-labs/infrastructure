@@ -1,0 +1,89 @@
+#cloud-config
+users:
+  - name: ${username}
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    ssh_authorized_keys:
+      - ${ssh_authorized_key}
+
+package_update: true
+package_upgrade: true
+packages:
+  - curl 
+  - build-essential 
+  - jq
+  - procps
+  - file
+  - git 
+  - wget 
+  - liblz4-tool 
+  - aria2 
+  - make 
+
+write_files:
+- path: /run/osmosis/scripts/single-validator-testnet.sh
+  content: |
+    #!/bin/bash
+    
+    osmosisd config chain-id ${osmosis_chain_id}
+    osmosisd init "testnet-validator" --chain-id=${osmosis_chain_id}
+    osmosisd config
+  permissions: '0755'
+
+- path: /run/osmosis/scripts/setup-genesis-state.sh
+  content: |
+    #!/bin/bash
+    #TODO Should be replaced with dynamically generated where seed is written to a local file
+    cat /run/osmosis/seeds/validator  | osmosisd keys add validator --recover --keyring-backend=test
+    cat /run/osmosis/seeds/faucet     | osmosisd keys add faucet --recover --keyring-backend=test
+    cat /run/osmosis/seeds/clawback   | osmosisd keys add clawback --recover --keyring-backend=test
+    cat /run/osmosis/seeds/keplr1     | osmosisd keys add keplr1 --recover --keyring-backend=test
+
+    osmosisd add-genesis-account validator 2000000000000uosmo --keyring-backend=test
+    osmosisd add-genesis-account faucet 2000000000000uosmo,2000000000uion,2000000000000ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2 --keyring-backend=test
+    osmosisd add-genesis-account clawback 2000000000uosmo,2000000000uion,2000000000000ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2  --keyring-backend=test
+    # osmosisd add-genesis-account keplr1 2000000000uosmo,2000000000uion,2000000000000ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2  --keyring-backend=test
+
+    # Replace genesis file
+    cp /run/osmosis/config/genesis/json /home/osmosis/.osmosisd/config/
+
+    osmosisd gentx validator 1000000000000uosmo --chain-id=${osmosis_chain_id} --commission-rate=0.05 --commission-max-change-rate=0.01 --commission-max-rate=1.0 --keyring-backend=test
+    osmosisd collect-gentxs
+
+    #TODO app.toml as file?
+    sed -i 's%minimum-gas-prices = ""%minimum-gas-prices = "0.01uosmo"%g' /home/osmosis/.osmosisd/config/app.toml
+    osmosisd unsafe-reset-all
+    osmosisd config
+  permissions: '0755'
+
+- path: /run/osmosis/config/genesis.json
+  content: |
+    #TODO: add possiblity to specify json file via Terraform
+
+- path: /run/osmosis/seeds/validator
+  content: |
+    oven thank broccoli giant neither swamp betray moment birth lady wage student bicycle craft permit avoid burden tortoise oxygen file fix penalty two onion
+
+- path: /run/osmosis/seeds/faucet
+  content: |
+    catch spider raise grass flush audit result off auction stone best day soap stay organ canoe test spoon edit relief want warrior siren act
+
+- path: /run/osmosis/seeds/clawback
+  content: |
+    name salt burden assume awkward copy morning any kangaroo crucial width brother organ casual brief scorpion actress lady hover figure idea another employ another
+
+- path: /run/osmosis/seeds/keplr1
+  content: |
+    travel renew first fiction trick fly disease advance hunt famous absurd region
+
+runcmd:
+  - su ${username}
+
+  # Install osmosis
+  - wget -q https://github.com/osmosis-labs/osmosis/releases/download/v${osmosis_version}/osmosisd-${osmosis_version}-linux-amd64 -O /tmp/osmosisd
+  - chmod +x /tmp/osmosisd
+  - sudo mv /tmp/osmosisd /usr/local/bin/osmosisd
+
+  # Copy all osmosis stuff in osmosis home folder
+  - cp -R /run/osmosis/* /home/${username}/
+  - chown ${username}:${username} -R /home/${username}/
