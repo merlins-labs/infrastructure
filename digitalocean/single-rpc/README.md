@@ -1,5 +1,3 @@
-![Banner](https://raw.githubusercontent.com/osmosis-labs/osmosis/main/assets/banner.png)
-
 # Digitalocean - rpc setup
 
 This examples creates a single droplet in Digitalocean that:
