@@ -1,4 +1,4 @@
-# Digitalocean - rpc setup
+# Single Node RPC setup
 
 This examples creates a single droplet in Digitalocean that:
 
