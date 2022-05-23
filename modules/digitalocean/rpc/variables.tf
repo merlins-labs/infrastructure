@@ -30,10 +30,10 @@ variable "size" {
   type        = string
 }
 
-variable "image" {
-  description = "Droplet image name"
-  default     = "osmosislabs-osmosis" # https://marketplace.digitalocean.com/apps/osmosis
-  type        = string
+variable "initialize_nodes" {
+  description = "If true it would automatically run osmosis installer to initialize the nodes"
+  default     = true
+  type        = bool
 }
 
 # Firewall

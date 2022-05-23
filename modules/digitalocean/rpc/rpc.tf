@@ -4,7 +4,7 @@ resource "digitalocean_droplet" "rpc" {
 
   name   = format("%s-fullnode-%d", var.name, count.index)
   region = var.region
-  image  = var.image
+  image  = "osmosislabs-osmosis"
   size   = var.size
   tags   = concat(var.tags, ["rpc", "terraform"])
 
@@ -21,7 +21,7 @@ resource "digitalocean_droplet" "rpc" {
   droplet_agent = false
 
   # Initialize node via cloud init
-  user_data = data.template_file.cloud_init_rpc[count.index].rendered
+  user_data = var.initialize_nodes ? data.template_file.cloud_init_rpc[count.index].rendered : ""
 
   lifecycle {
     ignore_changes = [user_data]
@@ -34,10 +34,6 @@ data "template_file" "cloud_init_rpc" {
   template = file("${path.module}/templates/cloud_init_rpc.yaml")
 
   vars = {
-    moniker = format("%s-fullnode-%d", var.name, count.index)
-
-    healthcheck_rpc_node            = "http://127.0.0.1:26657"
-    healthcheck_check_interval      = 10
-    healthcheck_new_block_threshold = 30
+    moniker = format("%s-%d", var.name, count.index)
   }
 }
