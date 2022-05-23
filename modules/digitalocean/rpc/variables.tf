@@ -40,14 +40,14 @@ variable "initialize_nodes" {
 
 variable "expose_rpc_endpoint" {
   description = "Expose publicly the rpc endpoint. Exposed by default via Load Balancer if present"
-  default     = "true"
-  type        = string
+  default     = true
+  type        = bool
 }
 
 variable "expose_lcd_endpoint" {
   description = "Expose publicly the lcd/rest endpoint. Exposed by default via Load Balancer if present"
-  default     = "true"
-  type        = string
+  default     = true
+  type        = bool
 }
 
 # SSH Access

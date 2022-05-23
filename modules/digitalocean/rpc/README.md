@@ -19,7 +19,6 @@ Some examples can be found in this repository:
 | Name | Version |
 |------|---------|
 | terraform | >= 1.0.0 |
-| cloudflare | ~> 3.0 |
 | digitalocean | ~> 2.17 |
 | tls | ~> 3.1.0 |
 
@@ -36,8 +35,8 @@ Some examples can be found in this repository:
 | Name | Description | Default | Required |
 |------|-------------|---------|:--------:|
 | create\_loadbalancer | Flag to create a Load Balancer before the nodes. Ignored if nodes = 1 | `true` | no |
-| expose\_lcd\_endpoint | Expose publicly the lcd/rest endpoint. Exposed by default via Load Balancer if present | `"true"` | no |
-| expose\_rpc\_endpoint | Expose publicly the rpc endpoint. Exposed by default via Load Balancer if present | `"true"` | no |
+| expose\_lcd\_endpoint | Expose publicly the lcd/rest endpoint. Exposed by default via Load Balancer if present | `true` | no |
+| expose\_rpc\_endpoint | Expose publicly the rpc endpoint. Exposed by default via Load Balancer if present | `true` | no |
 | initialize\_nodes | If true it would automatically run osmosis installer to initialize the nodes | `true` | no |
 | loadbalancer\_algorithm | The load balancing algorithm used to determine which backend Droplet will be selected by a client. It must be either round\_robin or least\_connections. | `"round_robin"` | no |
 | loadbalancer\_size | The size of the Load Balancer. More info: https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/loadbalancer#size | `"lb-small"` | no |
