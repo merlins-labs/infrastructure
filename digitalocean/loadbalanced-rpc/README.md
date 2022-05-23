@@ -1,4 +1,4 @@
-# Digitalocean - rpc setup
+# Load Balanced RPC setup
 
 This examples creates a single droplet in Digitalocean that:
 
