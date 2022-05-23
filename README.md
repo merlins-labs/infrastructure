@@ -1,46 +1,47 @@
-# Osmosis IAC WIP
+# Osmosis Infrastructure
 
-This is an experimental attempt to setup the infrastructure as code for running different osmosis setups via Terraform's IAC (Infrastructure as code). 
+This repository contains reference architectures for common osmosis (and cosmos chains) infrastructure setups.
+The reference architecture is specified ad Infrastructure As Code (IAC) using [Terraform](https://www.terraform.io/) and get be used a starting point to deploy blockchain nodes.
 
-Terraform is quite flexible, I'm sure this can be improved a lot. The idea is to be able to recycle nodes fast and to make sure that we are always using the exact same configuration.
+> Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. To learn about more about Terraform please check the [documentation](https://www.terraform.io/docs)
 
-At first we will use DigitalOcean but we could make modules for different cloud providers and different types of configurations. 
+Currently we support the following setups:
 
-This setup works with Terraform's CLI and is executed locally. We will eventually move to Terraform Cloud. 
+- [DigitalOcean - Single RPC Node]()
+- [DigitalOcean - Loadbalanced RPC Node]()
 
-## Repository structure
+More setups and support for more cloud providers will be added in the future. 
+If there is a setup that you would like implemented, feel free to request opening an issue.
+
+## Repository Structure
 
 |   Folder    |                      Description                      |
 | ----------- | ----------------------------------------------------- |
 | `modules/`  | Contains the terraform modules divided by providers   |
 | `examples/` | Contains examples of modules usage                    |
-| `scripts/`  | Contains scripts to perform basic operations on nodes |
 
 ## Prerequisites
 
 ### Install Terraform
 
-Install Terraform via the commands below or get more options from the [official docs](https://learn.hashicorp.com/tutorials/terraform/install-cli).
+Install Terraform via the commands below:
 
-OSX
-```
+In OSX/Linux with Brew:
+
+```bash
 brew tap hashicorp/tap
 brew install hashicorp/tap/terraform
 ```
-Windows via [Chocolatey](https://chocolatey.org/)
-``` 
+
+In Windows via [Chocolatey](https://chocolatey.org/):
+
+```bash
 choco install terraform
 ```
 
-### Create DigitalOcean API Token
+Get more options from the [official docs](https://learn.hashicorp.com/tutorials/terraform/install-cli).
 
-Get an API token from [here](https://cloud.digitalocean.com/account/api)
-
-```
-export DIGITALOCEAN_TOKEN="your_personal_access_token"
-```
-
-## Terraform Modules
+## Reference Architecture
 
 Currently this repository contains the following modules:
 
@@ -49,3 +50,6 @@ Currently this repository contains the following modules:
 | `Osmosis Node` | DO       | Setup osmosis node(s) | [link](./modules/digital-ocean/osmosis-node) |
 
 Examples on how to use the modules can be found in the [examples](./examples/) folder.
+
+### DigitalOcean
+
