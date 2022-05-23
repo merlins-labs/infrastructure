@@ -1,0 +1,66 @@
+formatter: "markdown" # this is required
+
+version: ""
+
+recursive:
+  enabled: false
+  path: modules
+
+sections:
+  hide: ["resources", "data-sources", "modules"]
+  show: []
+
+content: |-
+
+  # Terraform Digitalocean Droplet
+
+  This Terraform module creates an opinionated rpc setup on Digitalocean for osmosis.
+
+  ## Usage Examples
+
+  Some examples can be found in this repository:
+
+  - [Single RPC](../../../digitalocean/single-rpc/)
+  - [Single RPC with Floating IP](../../../digitalocean/single-rpc-with-floating-ip)
+  - [Single RPC with Monitor Alert](../../../digitalocean/single-rpc-with-monitor-alert)
+
+  {{ .Requirements }}
+
+  {{ .Providers }}
+
+  {{ .Inputs }}  
+
+  {{ .Outputs }}
+
+  ## Usage
+
+  ```hcl
+  {{ include "../../../digitalocean/single-rpc/main.tf" }}
+  ```
+
+output:
+  file: "README.md"
+  mode: replace
+
+output-values:
+  enabled: false
+  from: ""
+
+sort:
+  enabled: true
+  by: name
+
+settings:
+  anchor: false
+  color: true
+  default: true
+  description: false
+  escape: true
+  hide-empty: false
+  html: false
+  indent: 2
+  lockfile: true
+  read-comments: true
+  required: true
+  sensitive: true
+  type: false
