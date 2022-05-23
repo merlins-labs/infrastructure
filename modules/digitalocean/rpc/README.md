@@ -10,7 +10,9 @@ Some examples can be found in this repository:
 
 - [Single RPC](../../../digitalocean/single-rpc/)
 - [Single RPC with Floating IP](../../../digitalocean/single-rpc-with-floating-ip)
-- [Single RPC with Monitor Alert](../../../digitalocean/single-rpc-with-monitor-alert)
+- [Single RPC with Monitor Alert](../../../digitalocean/single-rpc-with-monitor-alerts)
+- [Loadbalanced RPC](../../../digitalocean/loadbalanced-rpc)
+- [Loadbalanced RPC with Monitor Alert](../../../digitalocean/loadbalanced-rpc-with-monitor-alerts)
 
 ## Requirements
 
@@ -37,7 +39,7 @@ Some examples can be found in this repository:
 | expose\_lcd\_endpoint | Expose publicly the lcd/rest endpoint. Exposed by default via Load Balancer if present | `"true"` | no |
 | expose\_rpc\_endpoint | Expose publicly the rpc endpoint. Exposed by default via Load Balancer if present | `"true"` | no |
 | initialize\_nodes | If true it would automatically run osmosis installer to initialize the nodes | `true` | no |
-| loadbalancer\_algorithm | The load balancing algorithm used to determine which backend Droplet will be selected by a client. It must be either round\_robin or least\_connections. | `"round-robin"` | no |
+| loadbalancer\_algorithm | The load balancing algorithm used to determine which backend Droplet will be selected by a client. It must be either round\_robin or least\_connections. | `"round_robin"` | no |
 | loadbalancer\_size | The size of the Load Balancer. More info: https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/loadbalancer#size | `"lb-small"` | no |
 | name | Node name | `"osmosis-rpc"` | no |
 | nodes | Number of rpc nodes create | `3` | no |
@@ -95,6 +97,10 @@ module "osmosis-rpc" {
   # Find others slugs with: `doctl compute size list`"
   size = "m3-4vcpu-32gb"
 }
+
+# ------------------------------------------------------------
+# Outputs
+# ------------------------------------------------------------
 
 output "ips" {
   value       = module.osmosis-rpc.droplets_ips

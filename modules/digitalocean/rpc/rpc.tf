@@ -6,7 +6,7 @@ resource "digitalocean_droplet" "rpc" {
   region = var.region
   image  = "osmosislabs-osmosis"
   size   = var.size
-  tags   = concat(var.tags, ["rpc", "terraform"])
+  tags   = concat(var.tags, ["terraform"])
 
   monitoring = true
 

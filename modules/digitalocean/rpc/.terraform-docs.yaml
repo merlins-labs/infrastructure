@@ -22,7 +22,9 @@ content: |-
 
   - [Single RPC](../../../digitalocean/single-rpc/)
   - [Single RPC with Floating IP](../../../digitalocean/single-rpc-with-floating-ip)
-  - [Single RPC with Monitor Alert](../../../digitalocean/single-rpc-with-monitor-alert)
+  - [Single RPC with Monitor Alert](../../../digitalocean/single-rpc-with-monitor-alerts)
+  - [Loadbalanced RPC](../../../digitalocean/loadbalanced-rpc)
+  - [Loadbalanced RPC with Monitor Alert](../../../digitalocean/loadbalanced-rpc-with-monitor-alerts)
 
   {{ .Requirements }}
 

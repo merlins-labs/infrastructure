@@ -80,7 +80,7 @@ variable "loadbalancer_size" {
 
 variable "loadbalancer_algorithm" {
   description = "The load balancing algorithm used to determine which backend Droplet will be selected by a client. It must be either round_robin or least_connections."
-  default     = "round-robin"
+  default     = "round_robin"
   type        = string
 }
 
