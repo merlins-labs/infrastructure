@@ -12,7 +12,7 @@ sections:
 
 content: |-
 
-  # Terraform Digitalocean Droplet
+  # Terraform Digitalocean Osmosis RPC
 
   This Terraform module creates an opinionated rpc setup on Digitalocean for osmosis.
 
@@ -36,8 +36,16 @@ content: |-
 
   ## Usage
 
+  ### Single RPC Setup
+  
   ```hcl
   {{ include "../../../digitalocean/single-rpc/main.tf" }}
+  ```
+
+  ### Loadbalanced RPC Setup
+  
+  ```hcl
+  {{ include "../../../digitalocean/loadbalanced-rpc/main.tf" }}
   ```
 
 output:
