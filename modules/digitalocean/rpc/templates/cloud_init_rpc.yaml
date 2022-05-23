@@ -1,0 +1,14 @@
+#cloud-config
+packages:
+  - docker.io
+
+groups:
+  - docker
+
+system_info:
+  default_user:
+    groups: [docker]
+
+runcmd:
+  - ufw disable
+  - curl -sL https://raw.githubusercontent.com/osmosis-labs/osmosis-installer/adam/infra-option/osmosis-installer.py > i.py && HOME=/root USER=root python3 i.py -m -p 'tcp://0.0.0.0:1317;0.0.0.0:9090;0.0.0.0:9091;tcp://127.0.0.1:26658;tcp://0.0.0.0:26657;tcp://0.0.0.0:26656;localhost:6060' -na ${moniker} -st infra
