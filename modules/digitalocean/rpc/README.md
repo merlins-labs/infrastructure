@@ -36,7 +36,7 @@ Some examples can be found in this repository:
 | create\_loadbalancer | Flag to create a Load Balancer before the nodes. Ignored if nodes = 1 | `true` | no |
 | expose\_lcd\_endpoint | Expose publicly the lcd/rest endpoint. Exposed by default via Load Balancer if present | `"true"` | no |
 | expose\_rpc\_endpoint | Expose publicly the rpc endpoint. Exposed by default via Load Balancer if present | `"true"` | no |
-| image | Droplet image name | `"osmosislabs-osmosis"` | no |
+| initialize\_nodes | If true it would automatically run osmosis installer to initialize the nodes | `true` | no |
 | loadbalancer\_algorithm | The load balancing algorithm used to determine which backend Droplet will be selected by a client. It must be either round\_robin or least\_connections. | `"round-robin"` | no |
 | loadbalancer\_size | The size of the Load Balancer. More info: https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/loadbalancer#size | `"lb-small"` | no |
 | name | Node name | `"osmosis-rpc"` | no |
@@ -86,7 +86,7 @@ terraform {
 module "osmosis-rpc" {
   source = "../../modules/digitalocean/rpc"
 
-  name   = "osmosis-rpc"
+  name   = "osmosis-single-rpc"
   nodes  = 1
   region = "nyc3"
   tags   = ["osmosis", "fullnode"]
