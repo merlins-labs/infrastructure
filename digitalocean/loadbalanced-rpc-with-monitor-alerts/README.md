@@ -1,6 +1,4 @@
-![Banner](https://raw.githubusercontent.com/osmosis-labs/osmosis/main/assets/banner.png)
-
-# Digitalocean - rpc setup
+# Load Balanced RPC with alerts
 
 This examples creates a single droplet in Digitalocean that:
 
