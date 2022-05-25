@@ -74,3 +74,9 @@ tail -f /var/log/cloud-init-output.log
 ```
 
 7. Play around with your osmosis node!
+
+## Get started in Digitalocean
+
+Get $100 in credit over 60 days through our referral link:
+
+[![DigitalOcean Referral Badge](https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%203.svg)](https://www.digitalocean.com/?refcode=f6e2bb0e0af7&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge)
